@@ -104,7 +104,8 @@ public class OkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-
+        lastDiscardedTile = players[currentPlayerIndex].getAndRemoveTile(tileIndex);
+        System.out.println("Discarded tile: " + lastDiscardedTile);
     }
 
     public void displayDiscardInformation() {
