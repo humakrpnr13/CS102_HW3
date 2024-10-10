@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class OkeyGame {
@@ -44,10 +45,7 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        if(lastDiscardedTile != null){
-            return lastDiscardedTile.toString();
-        }
-        return "There is no tile.";
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -56,7 +54,9 @@ public class OkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        Tile top = tiles[tiles.length - 1];
+        tiles = Arrays.copyOf(tiles, tiles.length - 1);
+        return "Picked tile: " + top;
     }
 
     /*
@@ -138,5 +138,4 @@ public class OkeyGame {
             players[index] = new Player(name);
         }
     }
-
 }
