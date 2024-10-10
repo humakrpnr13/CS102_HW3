@@ -37,6 +37,15 @@ public class OkeyGame {
      */
     public void distributeTilesToPlayers() {
 
+        for(int i = 0; i < 15; i++){
+            players[0].addTile(tiles[i]);
+        }
+
+        for(int i = 1; i < players.length; i++){
+            for(int j = 0; j < 14; j++){
+                players[i].addTile(tiles[j]);
+            }
+        }
     }
 
     /*
