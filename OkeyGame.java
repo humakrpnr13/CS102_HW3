@@ -97,6 +97,22 @@ public class OkeyGame {
      * the current status. Print whether computer picks from tiles or discarded ones.
      */
     public void pickTileForComputer() {
+        boolean isFound = false;
+        if(lastDiscardedTile != null){
+            for( Tile tile : players[currentPlayerIndex].getTiles()){
+                if(lastDiscardedTile.canFormChainWith(tile)){
+                    isFound = true;
+                }
+            }
+        }
+        if(isFound){
+            System.out.println("Computer picked the last discarded tile: " + lastDiscardedTile.toString());
+            players[currentPlayerIndex].addTile(lastDiscardedTile);
+        }
+        else{
+            System.out.println("Computer doesn't picked the last discarded tile " + getTopTile());
+            players[currentPlayerIndex].addTile(tiles[tiles.length-1]);
+        }
 
     }
 
