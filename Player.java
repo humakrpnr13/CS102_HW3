@@ -13,7 +13,19 @@ public class Player {
      * TODO: removes and returns the tile in given index
      */
     public Tile getAndRemoveTile(int index) {
-        return null;
+        Tile[] newHand = new Tile[playerTiles.length-1];
+
+        for(int i = index; i < playerTiles.length; i++){
+            playerTiles[i] = playerTiles[i+1];
+        }
+
+        for(int n = 0; n < newHand.length; n++) {
+            newHand[n] = playerTiles[n];
+        }
+
+        Tile removedTile = playerTiles[index];
+
+        return removedTile;
     }
 
     /*
@@ -22,7 +34,13 @@ public class Player {
      * make sure playerTiles are not more than 15 at any time
      */
     public void addTile(Tile t) {
+        int indexToAdd = findPositionOfTile(t);
 
+        numberOfTiles++;
+
+        for(int i = numberOfTiles-1; i > indexToAdd; i--) {
+            playerTiles[i] = playerTiles[i+1];
+        }
     }
 
     /*
@@ -32,7 +50,55 @@ public class Player {
      * @return
      */
     public boolean isWinningHand() {
-        return false;
+        int chainCount = 0;
+        int yellow = 0;
+        int black = 0;
+        int red = 0;
+        int blue = 0;
+
+        for(int value = 1; value <= 7; value++) {
+
+            for(int i = 0; i < playerTiles.length; i++) {
+                Tile currentTile = playerTiles[i];
+                if(currentTile.getValue() == value) {
+                    if(currentTile.getColor() == 'Y') {
+                        yellow++;
+                    }
+                    else if(currentTile.getColor() == 'B') {
+                        blue++;
+                    }
+                    else if(currentTile.getColor() == 'R') {
+                        red++;
+                    }
+                    else if(currentTile.getColor() == 'K') {
+                        black++;
+                    }
+                }
+            }
+            int[] colorCount = new int[4]; //0: 'Y' 1: 'B' 2: 'R' 3: 'K'
+                colorCount[0] = yellow;
+                colorCount[1] = blue;
+                colorCount[2] = red;
+                colorCount[3] = black;
+
+                int diffColor = 0;
+                for(int i = 0; i < colorCount.length; i++) {
+                    if(colorCount[i]>0) {
+                        diffColor++;
+                    }
+                }
+
+                if(diffColor >= 4) {
+                    chainCount++;
+                }
+        }
+        if(chainCount>=3) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
     public int findPositionOfTile(Tile t) {
