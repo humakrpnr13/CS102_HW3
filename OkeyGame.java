@@ -123,7 +123,51 @@ public class OkeyGame {
      * the single tiles and tiles that contribute to the smallest chains.
      */
     public void discardTileForComputer() {
-
+        boolean isDiscarded= false;
+        //first we will check if there are duplicates
+        Tile [] tilesToCheck = players[currentPlayerIndex].getTiles();
+        for(int i = 0; i<tilesToCheck.length &&!isDiscarded ; i++){
+            for(int c = i+1; c<tilesToCheck.length&&!isDiscarded; c++){
+                if(tilesToCheck[i].compareTo(tilesToCheck[c])==0){
+                    discardTile(c);
+                    isDiscarded = true;
+                }
+            }
+        }
+        //if there is no duplicates, we will look if tile contribute to a chain
+        if(!isDiscarded){
+            boolean canForm = false;
+            for(int i = 0; i<tilesToCheck.length &&!isDiscarded ; i++){
+                for(int c = i+1; c<tilesToCheck.length&&!isDiscarded; c++){
+                    if(tilesToCheck[i].canFormChainWith(tilesToCheck[c])){
+                        canForm = true;
+                    }
+                }
+                if(!canForm){
+                    discardTile(i);
+                    isDiscarded = true;
+                }
+            }
+            
+        }
+        //if there is no single ones, we will discard the smallest one
+        if(!isDiscarded){
+            int smallest = smallestTileIndex(tilesToCheck);
+            discardTile(smallest);
+        }
+    }
+    /**
+     * additional method I used for looking for the smallest value in a tile and get its index
+     * @param tileIndex
+     */
+    public int smallestTileIndex (Tile[] tile){
+        int index = 0;
+        for(int i= 1; i < tile.length; i++){
+            if(tiles[i].compareTo(tile[smallestTileIndex(tile)])<0){
+                index = i;
+            }
+        }
+        return index;
     }
 
     /*
