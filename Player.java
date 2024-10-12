@@ -34,12 +34,16 @@ public class Player {
      * make sure playerTiles are not more than 15 at any time
      */
     public void addTile(Tile t) {
-        int indexToAdd = findPositionOfTile(t);
-
-        numberOfTiles++;
-
-        for(int i = numberOfTiles-1; i > indexToAdd; i--) {
-            playerTiles[i] = playerTiles[i+1];
+        if(numberOfTiles < 15) {
+            int index = 0;
+            while( index < numberOfTiles && playerTiles[index] != null && playerTiles[index].compareTo(t) <= 0) {
+                index++;
+            }
+            for(int i = numberOfTiles-1; i > index; i--) {
+                playerTiles[i] = playerTiles[i-1];
+            }        
+            playerTiles[index] = t; 
+            numberOfTiles++;   
         }
     }
 
