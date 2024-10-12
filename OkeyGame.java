@@ -106,12 +106,14 @@ public class OkeyGame {
             }
         }
         if(isFound){
-            System.out.println("Computer picked the last discarded tile: " + lastDiscardedTile.toString());
             players[currentPlayerIndex].addTile(lastDiscardedTile);
+            System.out.println("Computer picked the last discarded tile: " + lastDiscardedTile.toString());
+            
         }
         else{
-            System.out.println("Computer doesn't picked the last discarded tile " + getTopTile());
             players[currentPlayerIndex].addTile(tiles[tiles.length-1]);
+            System.out.println("Computer doesn't picked the last discarded tile " + getTopTile());
+    
         }
 
     }
