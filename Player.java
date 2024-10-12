@@ -64,7 +64,7 @@ public class Player {
 
             for(int i = 0; i < playerTiles.length; i++) {
                 Tile currentTile = playerTiles[i];
-                if(currentTile.getValue() == value) {
+                if(currentTile != null && currentTile.getValue() == value) {
                     if(currentTile.getColor() == 'Y') {
                         yellow++;
                     }
