@@ -104,7 +104,7 @@ public class Player {
     public int findPositionOfTile(Tile t) {
         int tilePosition = -1;
         for (int i = 0; i < numberOfTiles; i++) {
-            if(playerTiles[i].compareTo(t) == 0) {
+            if(playerTiles[i] != null && playerTiles[i].compareTo(t) == 0) {
                 tilePosition = i;
             }
         }
