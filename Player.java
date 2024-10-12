@@ -34,12 +34,16 @@ public class Player {
      * make sure playerTiles are not more than 15 at any time
      */
     public void addTile(Tile t) {
-        int indexToAdd = findPositionOfTile(t);
-
-        numberOfTiles++;
-
-        for(int i = numberOfTiles-1; i > indexToAdd; i--) {
-            playerTiles[i] = playerTiles[i+1];
+        if(numberOfTiles < 15) {
+            int index = 0;
+            while( index < numberOfTiles && playerTiles[index] != null && playerTiles[index].compareTo(t) <= 0) {
+                index++;
+            }
+            for(int i = numberOfTiles-1; i > index; i--) {
+                playerTiles[i] = playerTiles[i-1];
+            }        
+            playerTiles[index] = t; 
+            numberOfTiles++;   
         }
     }
 
@@ -104,7 +108,7 @@ public class Player {
     public int findPositionOfTile(Tile t) {
         int tilePosition = -1;
         for (int i = 0; i < numberOfTiles; i++) {
-            if(playerTiles[i].compareTo(t) == 0) {
+            if(playerTiles[i] != null && playerTiles[i].compareTo(t) == 0) {
                 tilePosition = i;
             }
         }
@@ -114,11 +118,14 @@ public class Player {
     public void displayTiles() {
         System.out.println(playerName + "'s Tiles:");
         for (int i = 0; i < numberOfTiles; i++) {
-            System.out.print(playerTiles[i].toString() + " ");
+            if(playerTiles[i] != null){
+                System.out.print(playerTiles[i].toString() + " ");
+            }
+            
         }
         System.out.println();
     }
-
+ 
     public Tile[] getTiles() {
         return playerTiles;
     }
