@@ -13,19 +13,16 @@ public class Player {
      * TODO: removes and returns the tile in given index
      */
     public Tile getAndRemoveTile(int index) {
-        Tile[] newHand = new Tile[playerTiles.length-1];
+        Tile removed = playerTiles[index];
 
-        for(int i = index; i < playerTiles.length; i++){
-            playerTiles[i] = playerTiles[i+1];
+        for(int i = index; i < numberOfTiles - 1; i++){
+            playerTiles[i] = playerTiles[i + 1];
         }
 
-        for(int n = 0; n < newHand.length; n++) {
-            newHand[n] = playerTiles[n];
-        }
+        playerTiles[numberOfTiles - 1] = null;
+        numberOfTiles--;
 
-        Tile removedTile = playerTiles[index];
-
-        return removedTile;
+        return removed;  
     }
 
     /*
