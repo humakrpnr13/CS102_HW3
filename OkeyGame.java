@@ -113,15 +113,13 @@ public class OkeyGame {
         else{
             players[currentPlayerIndex].addTile(tiles[tiles.length-1]);
             System.out.println("Computer doesn't picked the last discarded tile " + getTopTile());
-<<<<<<< Updated upstream
+
     
         }
 
-=======
             
         }
->>>>>>> Stashed changes
-    }
+    
 
     /*
      * TODO: Current computer player will discard the least useful tile.
