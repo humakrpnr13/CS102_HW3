@@ -79,7 +79,7 @@ public class ApplicationMain {
                     playerChoice = sc.nextInt();
 
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14
-                    while(!(playerChoice<=14&&playerChoice>=0)){
+                    while((playerChoice>14||playerChoice<0)){
                         System.out.println("Please give an index between 0 and 14: ");
                         playerChoice = sc.nextInt();
                     }
