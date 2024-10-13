@@ -52,12 +52,12 @@ public class Player {
      */
     public boolean isWinningHand() {
         int chainCount = 0;
-        int yellow = 0;
-        int black = 0;
-        int red = 0;
-        int blue = 0;
-
+       
         for(int value = 1; value <= 7; value++) {
+            int yellow = 0;
+            int black = 0;
+            int red = 0;
+            int blue = 0;
 
             for(int i = 0; i < playerTiles.length; i++) {
                 Tile currentTile = playerTiles[i];
