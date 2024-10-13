@@ -65,6 +65,7 @@ public class OkeyGame {
     public String getTopTile() {
         Tile top = tiles[tiles.length - 1];
         tiles = Arrays.copyOf(tiles, tiles.length - 1);
+        players[currentPlayerIndex].addTile(top);
         return "Picked tile: " + top;
     }
 
